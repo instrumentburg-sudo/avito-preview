@@ -1,0 +1,15 @@
+on:
+  push:
+    workflows: publish-site
+    filter:
+      branches: master
+
+workflows:
+  publish-site:
+    tasks:
+      - name: publish-site
+        cubes:
+          - name: publish
+            script:
+              - git checkout -B release
+              - git push origin release -f
